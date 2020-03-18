@@ -4,67 +4,37 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-
-const appointments = [
-  {
-    id: 1,
-    time: "12pm"
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png"
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm",
-    interview: {
-      student: "Marc Gasol",
-      interviewer: {
-        id: 1,
-        name: "Mildred Nazir",
-        avatar: "https://i.imgur.com/T2WwVfS.png"
-      }
-    }
-  },
-  {
-    id: 4,
-    time: "3pm"
-  },
-  {
-    id: 5,
-    time: "4pm",
-    interview: {
-      student: "Bort Sampson",
-      interviewer: {
-        id: 1,
-        name: "Sven Jones",
-        avatar: "https://i.imgur.com/twYrpay.jpg"
-      }
-    }
-  }
-];
+import getAppointmentsForDay from "../helpers/selectors";
 
 export default function Application(props) {
-  const [day, setDay] = useState("Monday");
-  const [days, setDays] = useState([]);
+  const [state, setState] = useState({
+    day: "Tuesday",
+    days: [],
+    appointments: []
+  });
+
+  const setDay = day => setState({ ...state, day });
+  const setDays = days => setState({ ...state, days });
+
+  useEffect(() => {
+    const first = axios.get("http://localhost:8001/api/days");
+    const second = axios.get("http://localhost:8001/api/appointments");
+    Promise.all([Promise.resolve(first), Promise.resolve(second)]).then(all => {
+      setState(prev => ({
+        ...prev,
+        days: all[0].data,
+        appointments: all[1].data
+      }));
+    }, []);
+
+    console.log(state);
+  }, [state]);
+
+  const appointments = getAppointmentsForDay(state, state.day);
 
   const printSchedule = appointments.map(appointment => {
     return <Appointment key={appointment.id} {...appointment} />;
   });
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8001/api/days")
-      .then(response => setDays(response.data));
-  }, []);
 
   return (
     <main className="layout">
@@ -76,7 +46,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={days} day={day} setDay={setDay} />
+          <DayList days={state.days} day={state.day} setDay={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
