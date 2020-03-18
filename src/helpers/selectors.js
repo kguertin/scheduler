@@ -1,6 +1,6 @@
 import React from "react";
 
-export function getAppointmentsForDay(state, day) {
+export default function getAppointmentsForDay(state, day) {
   const dayAppointments = [];
   state.days.forEach(i => {
     if (i.name === day) {
