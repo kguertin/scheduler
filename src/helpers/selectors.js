@@ -19,4 +19,23 @@ export default function getAppointmentsForDay(state, day) {
   }
 }
 
-export default function getInterview() {}
+export function getInterview(state, interview) {
+  if (interview === null) {
+    return null;
+  }
+  let currentInterview;
+  Object.keys(state.interviewers).forEach(i => {
+    if (interview.interviewer === state.interviewers[i].id) {
+      currentInterview = {
+        ...currentInterview,
+        student: interview.student,
+        interviewer: {
+          id: state.interviewers[i].id,
+          name: state.interviewers[i].name,
+          avatar: state.interviewers[i].avatar
+        }
+      };
+    }
+  });
+  return currentInterview;
+}
