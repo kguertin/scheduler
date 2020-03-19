@@ -18,8 +18,6 @@ export default function DayListItem(props) {
     }
   };
 
-  console.log(props.spots);
-
   return (
     <li
       className={dayClass}
