@@ -3,9 +3,13 @@ import React, { useState } from "react";
 export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
-  const transition = newMode => {
+  const transition = (newMode, replace = false) => {
     setMode(newMode);
-    setHistory([...history, newMode]);
+    if (replace) {
+      setHistory([history[0], newMode]);
+    } else {
+      setHistory([...history, newMode]);
+    }
   };
   const back = () => {
     if (history.length > 1) {
