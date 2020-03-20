@@ -48,8 +48,14 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-
     setState({ ...state, appointments });
+
+    return axios
+      .put(`/api/appointments/${id}`, appointment)
+      .then(() => setState({ ...state, appointments }));
+  }
+
+  function cancelInterview(id, interview) {
     console.log(id, interview);
   }
 
@@ -65,6 +71,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancleInterview={cancelInterview}
       />
     );
   });
