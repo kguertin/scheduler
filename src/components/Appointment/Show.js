@@ -23,7 +23,7 @@ export default function Show(props) {
             src="images/trash.png"
             alt="Delete"
             onClick={() => {
-              props.onDelete();
+              props.onDelete(props.id);
             }}
           />
         </section>

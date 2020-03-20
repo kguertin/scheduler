@@ -9,7 +9,7 @@ export default function Confirm(props) {
         <Button danger onClick={props.onCancel}>
           Cancel
         </Button>
-        <Button danger onClick={props.onConfirm}>
+        <Button danger onClick={() => props.onConfirm(props.id)}>
           Confirm
         </Button>
       </section>
