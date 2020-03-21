@@ -8,9 +8,26 @@ export default function useApplicationData() {
     appointments: [],
     interviewers: {}
   });
+
   function setDay(day) {
+    let bookedSlots = 0;
+    let newDay = {};
+    state.days.forEach(i => {
+      if (i.name === day) {
+        i.appointments.forEach(j => {
+          if (state.appointments[j].interview === null) {
+            bookedSlots++;
+          }
+        });
+        const spots = 5 - bookedSlots;
+        newDay = { ...state.days[i.id], spots: 5 - bookedSlots };
+        console.log(newDay);
+      }
+    });
+    console.log(...state.days);
     setState({ ...state, day });
   }
+
   useEffect(() => {
     const third = axios.get("http://localhost:8001/api/interviewers");
     const first = axios.get("http://localhost:8001/api/days");
@@ -28,6 +45,7 @@ export default function useApplicationData() {
       }));
     });
   }, []);
+
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -37,8 +55,14 @@ export default function useApplicationData() {
     const appointments = {
       ...state.appointments,
       [id]: appointment
+      // days: {
+      //   ...state.days,
+      //   [day]: {
+      //     ...status.days[day],
+      //     spots: state.days[day].spots - 1
+      //   }
+      // }
     };
-    setState({ ...state, appointments });
 
     return axios
       .put(`/api/appointments/${id}`, appointment)

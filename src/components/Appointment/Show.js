@@ -16,7 +16,7 @@ export default function Show(props) {
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
-            onClick={() => props.onEdit(props.id)}
+            onClick={() => props.onEdit(props)} //add .id and we can no longer save
           />
           <img
             className="appointment__actions-button"
