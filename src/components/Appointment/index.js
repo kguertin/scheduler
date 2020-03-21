@@ -6,6 +6,7 @@ import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm";
+import Error from "components/Appointment/Error";
 import useVisualMode from "../../hooks/useVisualMode";
 
 const EMPTY = "EMPTY";
@@ -34,15 +35,15 @@ export default function Appointment(props) {
       .then(() => {
         transition(SHOW);
       })
-      .catch(err => transition(ERROR_SAVE));
+      .catch(err => transition(ERROR_SAVE, true));
   }
 
   function deleteListing(id) {
-    transition(DELETE);
+    transition(DELETE, true);
     props
-      .cancelInterview(id)
+      .cancelInterview(props.id)
       .then(() => transition(EMPTY))
-      .catch(err => transition(ERROR_DELETE));
+      .catch(err => transition(ERROR_DELETE, true));
   }
 
   return (
@@ -98,6 +99,8 @@ export default function Appointment(props) {
           }}
         />
       )}
+      {mode === ERROR_SAVE && <Error mode={mode} onClose={() => back()} />}
+      {mode === ERROR_DELETE && <Error mode={mode} onClose={() => back()} />}
     </article>
   );
 }
