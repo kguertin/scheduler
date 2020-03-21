@@ -66,8 +66,6 @@ export default function Application(props) {
       .then(() => setState(state => ({ ...state, appointments })));
   }
 
-  function editInterview() {}
-
   const printSchedule = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
-import InterviewListItem from "components/InterviewerListItem";
 
 export default function Form(props) {
   const [name, setName] = useState(props.name || "");
@@ -33,6 +32,7 @@ export default function Form(props) {
         </form>
         <InterviewerList
           interviewers={props.interviewers}
+          interviewer={interviewer || ""}
           value={interviewer}
           onChange={setInterviewer}
         />
