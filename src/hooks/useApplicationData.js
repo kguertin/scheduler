@@ -63,7 +63,6 @@ export default function useApplicationData() {
         return day;
       }
     });
-    console.log(days);
 
     return axios
       .put(`/api/appointments/${id}`, appointment)
@@ -85,7 +84,6 @@ export default function useApplicationData() {
         return day;
       }
     });
-    console.log(days);
     return axios
       .delete(`/api/appointments/${id}`)
       .then(() => setState(state => ({ ...state, appointments, days })));

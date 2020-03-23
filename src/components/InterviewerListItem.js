@@ -6,7 +6,6 @@ export default function InterviewListItem(props) {
   const interviewerClass = classnames("interviewers__item", {
     "interviewers__item--selected": props.selected
   });
-  console.log(props.selected);
   return (
     <li
       id={props.id}
