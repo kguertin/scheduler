@@ -33,7 +33,9 @@ export default function useApplicationData() {
 
   function calcSpot(day, days, appointments) {
     let bookedSpots = 0;
+    let totalSpots = 0;
     days.forEach(i => {
+      totalSpots++;
       if (i.name === day) {
         i.appointments.forEach(j => {
           if (appointments[j].interview !== null) {
@@ -42,7 +44,7 @@ export default function useApplicationData() {
         });
       }
     });
-    return 5 - bookedSpots;
+    return totalSpots - bookedSpots;
   }
 
   function bookInterview(id, interview) {
