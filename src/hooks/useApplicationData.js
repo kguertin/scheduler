@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
-    day: "Tuesday",
+    day: "Monday",
     days: [],
     appointments: [],
     interviewers: {}
