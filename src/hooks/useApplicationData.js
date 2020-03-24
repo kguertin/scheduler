@@ -14,9 +14,9 @@ export default function useApplicationData() {
   }
 
   useEffect(() => {
-    const third = axios.get("http://localhost:8001/api/interviewers");
-    const first = axios.get("http://localhost:8001/api/days");
-    const second = axios.get("http://localhost:8001/api/appointments");
+    const third = axios.get("/api/interviewers");
+    const first = axios.get("/api/days");
+    const second = axios.get("/api/appointments");
     Promise.all([
       Promise.resolve(first),
       Promise.resolve(second),
