@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+// Manage Application State
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
@@ -13,6 +14,7 @@ export default function useApplicationData() {
     setState({ ...state, day });
   }
 
+  // Api routing
   useEffect(() => {
     const third = axios.get("/api/interviewers");
     const first = axios.get("/api/days");
