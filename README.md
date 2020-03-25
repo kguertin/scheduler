@@ -1,8 +1,14 @@
 # Interview Scheduler
 
-Scheduler is a single-page application built with React that allows users to book appointments throughout the week within a specified time frame. Users select an empty time slot, enter their name and select the interviewer from those availible on a given day. Users can also edit and cancel appointments. The list of days updates the list of remaining interview spots for each day based on user actions.
+Scheduler is a single-page application built with React that allows users to book appointments throughout the week within a specified time frame. Users select an empty time slot, enter their name and select the interviewer from those available on a given day. Users can also edit and cancel appointments. The list of days updates the list of remaining interview spots for each day based on user actions.
 
 ## Screen Shots
+
+![Displaying a day populated with appointments.'](https://github.com/kguertin/scheduler/blob/master/docs/scheduler-display-appointments.png)
+
+!['Displaying the form that appears when a user adds a new appointment or edits an existing one.'](https://github.com/kguertin/scheduler/blob/master/docs/scheduler-edit-appointment.png)
+
+!['Displaying the confirm message that appears when a user clicks delete on an existing appointment.'](https://github.com/kguertin/scheduler/blob/master/docs/scheduler-delete-appointment.png)
 
 ## Setup
 
