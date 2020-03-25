@@ -37,7 +37,7 @@ npm run storybook
 
 ## Dependencies
 
-react v16.9.0,
-axios v0.19.2,
-normalize.css v8.0.1,
-classname v2.2.6
+- react v16.9.0,
+- axios v0.19.2,
+- normalize.css v8.0.1,
+- classname v2.2.6
